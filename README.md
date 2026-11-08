@@ -31,8 +31,8 @@ Alle Zahlen sind Messungen an festen Seeds (Median über die Instanzen des Absta
 | 50 (16) | 8,4 / 6,9 / 4,0 | 24,0 | 11,6 | 0,0 | 0,1 |
 | 100 (8) | 11,5 / 8,4 / 5,9 | 97,5 | 27,6 | 1,7 | 7,4 |
 
-- **Mit Lokalsuche liegt die Folge vorn oder gleichauf.** Folge + Split + Lokalsuche gegen Routen + Lokalsuche am Ende des Budgets (billiger / gleich / teurer): n = 12: 0 / 20 / 0; n = 25: 1 / 15 / 0; n = 50: **9 / 7 / 0**; n = 100: **8 / 0 / 0** (1,7 gegen 7,4 %). Nach 1000 Kindern: n = 25: 2 / 14 / 0, n = 50: 9 / 6 / 1, n = 100: 8 / 0 / 0.
-- **Ohne Lokalsuche kippt es mit der Größe und dem Verlauf.** Folge gegen Routen nach 1000 Kindern: n = 12: 6 / 4 / 10, n = 25: **1 / 0 / 15**, n = 50: 1 / 0 / 15, n = 100: 0 / 0 / 8 (n = 50: 104,5 gegen 60,2 %); am Ende des Budgets (16 000 Kinder): n = 12: 9 / 11 / 0, n = 25: **12 / 0 / 4** (1,2 gegen 5,3 %), n = 50: 3 / 0 / 13 (24,0 gegen 11,6 %), n = 100: 0 / 0 / 8 (97,5 gegen 27,6 %). Die Routenfassung kommt pro Kind früher voran (n ≥ 25), stagniert aber (n = 25: 5,3 % nach 8 000 und 16 000 Kindern), die Folge braucht mehr Kinder, überholt sie bei n = 25 und holt bei n = 50 und 100 nicht auf.
+- **Mit Lokalsuche liegt die Folge am Ende des Budgets vorn oder gleichauf (bei n = 12 und 25 ist „gleichauf“ ein Gleichstand der Endkosten).** Folge + Split + Lokalsuche gegen Routen + Lokalsuche am Ende des Budgets (billiger / gleich / teurer): n = 12: 0 / 20 / 0; n = 25: 1 / 15 / 0; n = 50: **9 / 7 / 0**; n = 100: **8 / 0 / 0** (1,7 gegen 7,4 %). Nach 1000 Kindern: n = 25: 2 / 14 / 0, n = 50: 9 / 6 / 1, n = 100: 8 / 0 / 0.
+- **Ohne Lokalsuche kippt es mit der Größe und dem Verlauf.** Folge gegen Routen nach 1000 Kindern: n = 12: 6 / 4 / 10, n = 25: **1 / 0 / 15**, n = 50: 1 / 0 / 15, n = 100: 0 / 0 / 8 (n = 50: 104,5 gegen 60,2 %); am Ende des Budgets (16 000 Kinder): n = 12: 9 / 11 / 0, n = 25: **12 / 0 / 4** (1,2 gegen 5,3 %), n = 50: 3 / 0 / 13 (24,0 gegen 11,6 %), n = 100: 0 / 0 / 8 (97,5 gegen 27,6 %). Die Routenfassung kommt ab etwa 1000 Kindern pro Kind früher voran (n ≥ 25; bei n = 50 liegt nach 250 Kindern noch die Folge in 12 von 16 Instanzen vorn), stagniert bei n = 25 (5,3 % nach 8 000 und 16 000 Kindern) und n = 50 früh, die Folge braucht mehr Kinder, überholt sie bei n = 25 und holt innerhalb von 16 000 Kindern bei n = 50 und 100 nicht auf (die Folge verbessert sich dort noch bei jeder Verdopplung).
 - **Die Lokalsuche entscheidet.** Mit gegen ohne Lokalsuche nach 1000 Kindern (billiger / gleich / teurer), Folge: n = 12: 13 / 7 / 0, n = 25: 16 / 0 / 0, n = 50: 16 / 0 / 0, n = 100: 8 / 0 / 0; Routen: 9 / 11 / 0, 16 / 0 / 0, 16 / 0 / 0, 8 / 0 / 0. Schon nach 250 Kindern liegen die Fassungen mit Lokalsuche bei n = 25 bei 0,0 %, bei n = 50 bei 0,1 % (Folge) und 0,8 % (Routen); ohne Lokalsuche bei 50,8 / 48,2 % (n = 25) und 152,0 / 150,2 % (n = 50).
 - **Lamarck gegen Baldwin** (Folge + Split + Lokalsuche, Rückschreiben gegen nicht Rückschreiben, am Ende des Budgets, billiger / gleich / teurer): n = 12: 0 / 20 / 0; n = 25: 1 / 15 / 0; n = 50: **14 / 2 / 0** (0,0 gegen 1,1 %); n = 100: **7 / 0 / 1** (1,7 gegen 4,4 %).
 - **Unter der Referenz.** Fassungen mit Lokalsuche liegen in der Zahl der Instanzen unter der PyVRP-Lösung (Folge + Lokalsuche / Routen + Lokalsuche / Baldwin): n = 25: 6 / 6 / 6 von 16; n = 50: 6 / 4 / 2 von 16; n = 100: 1 / 0 / 0 von 8; die Folge ohne Lokalsuche in 1 von 16 (n = 25). Die Referenz ist also keine Untergrenze.
@@ -42,7 +42,7 @@ Alle Zahlen sind Messungen an festen Seeds (Median über die Instanzen des Absta
 
 - Die Aussagen gelten für die gemessenen Größen (12, 25, 50, 100 Kunden), drei Zielrouten, 90 % Auslastung, die zwei Kartenarten der Bänder und diese **einfachen** genetischen Verfahren; sie sind keine Aussagen über HGS oder andere Operatoren.
 - **Ein Lauf je Instanz:** jede einzelne Zahl hat Zufall; bei 100 Kunden sind es nur 8 Instanzen.
-- Die Mutationswahrscheinlichkeit ist auf eigenen Instanzen abgestimmt; mit 0,3 statt 1,0 war die Routenfassung ohne Lokalsuche bei 50 Kunden deutlich schlechter. Das Ergebnis „Folge gegen Routen“ ohne Lokalsuche hängt an dieser Stellschraube und an der einfachen Routenkreuzung.
+- Die Mutationswahrscheinlichkeit ist auf eigenen Instanzen abgestimmt; mit 0,3 statt 1,0 war die Routenfassung ohne Lokalsuche bei 50 Kunden im Median und im Mittel deutlich schlechter (Median 23,2 gegen 11,6 %), je Instanz aber gemischt (in 9 von 16 Instanzen schlechter, in 7 von 16 besser). Das Ergebnis „Folge gegen Routen“ ohne Lokalsuche hängt an dieser Stellschraube und an der einfachen Routenkreuzung.
 - Ab 25 Kunden ist die Referenz PyVRP (5 Sekunden, ein Seed), eine gute Lösung und keine bewiesene Untergrenze.
 - Das Budget ist die Zahl der Kinder; ein Kind mit Lokalsuche und der Split je Kind kosten sehr verschieden viel Zeit. Wer nach Zeit vergleicht, kommt zu anderen Rangfolgen für die Fassungen ohne Lokalsuche (die Folge braucht je Kind mehr Rechenzeit, die Routenfassung weniger).
 - „Gleichauf“ heißt hier: die Mediane liegen weniger als einen Prozentpunkt auseinander.
@@ -67,7 +67,7 @@ Alle Zahlen sind Messungen an festen Seeds (Median über die Instanzen des Absta
 **Bekannte Probleme und Unsicherheiten**
 - Ein Lauf je Instanz: die Bänder zählen über viele Instanzen, jede einzelne Zahl hat Zufall; bei 100 Kunden sind es nur 8 Instanzen.
 - Bei gleichen Kosten entscheiden feste Regeln (kleinster Startknoten im Split, kleinste Stelle beim Einfügen, erste Verbesserung in der Lokalsuche); andere Regeln ergeben andere, gleich gute Pläne.
-- Die Routenfassung stagniert bei den einfachen Operatoren früh (keine Verbesserung mehr nach einigen tausend Kindern); mit anderen Kreuzungen wäre sie besser.
+- Die Routenfassung stagniert bei den einfachen Operatoren bei n = 25 und 50 früh (keine Verbesserung mehr nach einigen tausend Kindern, bei n = 100 verbessert sie sich noch); die Vermutung, mit anderen Kreuzungen wäre sie besser, ist nicht gemessen.
 - Die Diagramme wurden im Browser nur angesehen und per Rauchtest bedient, nicht mit echtem Mausklick auf einzelne Punkte geprüft.
 
 ## Befunde und Korrekturen gegenüber dem Plan
@@ -90,7 +90,7 @@ Alle Zahlen sind Messungen an festen Seeds (Median über die Instanzen des Absta
 
 ## Tests
 
-168 Tests. Laufzeit lokal etwa drei Minuten.
+168 Tests. Laufzeit lokal rund dreieinhalb Minuten (gemessen: 211 Sekunden).
 
 ## Dateistruktur
 

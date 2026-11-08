@@ -61,14 +61,14 @@ PRESETS = {
     "Die Lokalsuche entscheidet (n = 25)": {"n": 25, "family": 1, "depot": 0, "routes": 3, "fill": 90, "seed": 300000},
     "Folge oder Routen: je nach Instanz (n = 25)": {"n": 25, "family": 1, "depot": 0, "routes": 3, "fill": 90, "seed": 300002},
     "Die Konstruktion liegt 15 % daneben (n = 12, exakt)": {"n": 12, "family": 1, "depot": 1, "routes": 3, "fill": 90, "seed": 300001},
-    "Rückschreiben zählt (n = 25)": {"n": 25, "family": 2, "depot": 1, "routes": 3, "fill": 90, "seed": 300000},
+    "Rückschreiben kann zählen (n = 25, seltener Fall)": {"n": 25, "family": 2, "depot": 1, "routes": 3, "fill": 90, "seed": 300000},
 }
 PRESET_HELP = {
     "Ein Kind besser als beide Eltern (Handinstanz)": "Handinstanz aus den Stücken 1 bis 4: Elter A (3 5 2 6 4 1) kostet im Split 48,73, Elter B (1 6 4 3 5 2) 58,88. Die Ordnungskreuzung mit dem Schnitt der Plätze 3 bis 4 liefert (1 4 2 6 3 5), dessen Split 44,36 das Optimum ist; von 21 Schnitten liefert nur dieser ein Kind, das beide Eltern schlägt.",
     "Die Lokalsuche entscheidet (n = 25)": "Mit 2000 Kindern ohne und 500 mit Lokalsuche liegt Folge + Split 26,7 % und Routen 10,2 % über der besten Lösung 496,75, mit Lokalsuche liegen beide bei 0,0 %; Einfügen nach Split liegt 2,3 % darüber.",
     "Folge oder Routen: je nach Instanz (n = 25)": "Ohne Lokalsuche liegt hier Folge + Split 10,1 % (3 Routen) vor Routen 23,7 % (5 Routen) über der besten Lösung 531,43; bei der Instanz des Presets davor ist es umgekehrt. Mit Lokalsuche liegen beide bei 0,0 %.",
     "Die Konstruktion liegt 15 % daneben (n = 12, exakt)": "Das exakte Optimum 650,67; Einfügen nach Split kostet 749,98 (15,3 % darüber), Savings 701,75. Alle vier genetischen Fassungen finden das Optimum mit 2000 und 500 Kindern.",
-    "Rückschreiben zählt (n = 25)": "Die beste Lösung 495,23 findet Folge + Split + Lokalsuche mit Rückschreiben (Lamarck); ohne Rückschreiben (Baldwin) 495,73 (0,1 % darüber). Ohne Lokalsuche liegen Folge + Split 9,5 % und Routen 5,4 % darüber.",
+    "Rückschreiben kann zählen (n = 25, seltener Fall)": "Die beste Lösung 495,23 findet Folge + Split + Lokalsuche mit Rückschreiben (Lamarck); ohne Rückschreiben (Baldwin) 495,73 (0,1 % darüber). Das ist die einzige der 16 Instanzen mit 25 Kunden in den Bändern, in der Rückschreiben besser ist (1 / 15 / 0). Ohne Lokalsuche liegen Folge + Split 9,5 % und Routen 5,4 % darüber.",
 }
 
 # Text des Expanders „Annahmen, Grenzen und bekannte Probleme“; derselbe Text steht in der README (tests/test_readme.py vergleicht beide)
@@ -88,5 +88,5 @@ ASSUMPTIONS_MARKDOWN = """**Annahmen**
 **Bekannte Probleme und Unsicherheiten**
 - Ein Lauf je Instanz: die Bänder zählen über viele Instanzen, jede einzelne Zahl hat Zufall; bei 100 Kunden sind es nur 8 Instanzen.
 - Bei gleichen Kosten entscheiden feste Regeln (kleinster Startknoten im Split, kleinste Stelle beim Einfügen, erste Verbesserung in der Lokalsuche); andere Regeln ergeben andere, gleich gute Pläne.
-- Die Routenfassung stagniert bei den einfachen Operatoren früh (keine Verbesserung mehr nach einigen tausend Kindern); mit anderen Kreuzungen wäre sie besser.
+- Die Routenfassung stagniert bei den einfachen Operatoren bei n = 25 und 50 früh (keine Verbesserung mehr nach einigen tausend Kindern, bei n = 100 verbessert sie sich noch); die Vermutung, mit anderen Kreuzungen wäre sie besser, ist nicht gemessen.
 - Die Diagramme wurden im Browser nur angesehen und per Rauchtest bedient, nicht mit echtem Mausklick auf einzelne Punkte geprüft."""

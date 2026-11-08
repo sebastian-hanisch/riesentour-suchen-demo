@@ -61,6 +61,8 @@ def test_without_local_search_it_tips_with_size_and_time():
     assert [triple(n, "S_R_final") for n in C.BAND_SIZES] == [(9, 11, 0), (12, 0, 4), (3, 0, 13), (0, 0, 8)]
     assert (med_at(50, "S", 1000), med_at(50, "R", 1000)) == (104.5, 60.2) and (med_final(25, "S"), med_final(25, "R")) == (1.2, 5.3) and (med_final(50, "S"), med_final(50, "R")) == (24.0, 11.6) and (med_final(100, "S"), med_final(100, "R")) == (97.5, 27.6)
     assert med_at(25, "R", 8000) == med_at(25, "R", 16000) == 5.3
+    assert sum(1 for r in ev.band_rows(50) if ev.run_at(r, "S", 250) < ev.run_at(r, "R", 250) - 1e-9) == 12
+    assert "bei n = 50 liegt nach 250 Kindern noch die Folge in 12 von 16 Instanzen vorn" in README and "holt innerhalb von 16 000 Kindern bei n = 50 und 100 nicht auf" in README
     for text in ("n = 12: 6 / 4 / 10, n = 25: **1 / 0 / 15**, n = 50: 1 / 0 / 15, n = 100: 0 / 0 / 8 (n = 50: 104,5 gegen 60,2 %)", "n = 12: 9 / 11 / 0, n = 25: **12 / 0 / 4** (1,2 gegen 5,3 %), n = 50: 3 / 0 / 13 (24,0 gegen 11,6 %), n = 100: 0 / 0 / 8 (97,5 gegen 27,6 %)", "5,3 % nach 8 000 und 16 000 Kindern"):
         assert text in README, text
 
@@ -148,7 +150,10 @@ def test_construction_preset():
 
 
 def test_lamarck_preset():
-    name = "Rückschreiben zählt (n = 25)"
+    name = "Rückschreiben kann zählen (n = 25, seltener Fall)"
+    better = [(r["family"], r["depot"], r["seed"]) for r in ev.band_rows(25) if r["runs"]["SL"]["cost"] < r["runs"]["SB"]["cost"] - 1e-9]
+    assert better == [(2, 1, 300000)] and triple(25, "SL_SB_final") == (1, 15, 0) and len(ev.band_rows(25)) == 16
+    assert "die einzige der 16 Instanzen mit 25 Kunden in den Bändern, in der Rückschreiben besser ist (1 / 15 / 0)" in C.PRESET_HELP[name]
     a, res, ref = _live(name)
     assert round(ref, 2) == 495.23 and round(res["SL"].cost, 2) == 495.23 and round(res["SB"].cost, 2) == 495.73 and _gap(res, ref, "SB") == 0.1 and (_gap(res, ref, "S"), _gap(res, ref, "R")) == (9.5, 5.4)
     for text in ("495,23", "495,73", "0,1 %", "9,5 %", "5,4 %"):
